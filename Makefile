@@ -3,7 +3,7 @@ SHELL=/bin/bash -o pipefail
 REGISTRY ?= alittleprogramming
 BIN      := go-dev
 IMAGE    := $(REGISTRY)/$(BIN)
-TAG      := 1.14.1
+TAG      := 1.14.1-rc-1
 
 .PHONY: push
 push: container
