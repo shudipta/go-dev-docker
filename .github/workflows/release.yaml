@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: release
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -12,6 +12,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
+    name: release
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -19,6 +20,12 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      id: buildx
+      uses: crazy-max/ghaction-docker-buildx@v1
+      with:
+        version: latest
 
     # release a docker tag with the git tag name
     - name: Build
