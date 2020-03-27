@@ -20,14 +20,11 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Runs a single command using the runners shell
-    - name: Run a one-line script
+    # release a docker tag with the git tag name
+    - name: Build
+      env:
+        DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        USERNAME: alittleprogramming
       run: |
-        echo hi
-        docker --help
-
-    # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        docker login --username ${USERNAME} --password ${DOCKERHUB_TOKEN}
+        make push
