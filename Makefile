@@ -3,8 +3,7 @@ SHELL=/bin/bash -o pipefail
 REGISTRY ?= alittleprogramming
 BIN      := go-dev
 IMAGE    := $(REGISTRY)/$(BIN)
-TAG      := $(shell git describe --exact-match --abbrev=0 2>/dev/null || echo "latest")
-
+TAG      := 1.14.1
 
 .PHONY: push
 push: container
